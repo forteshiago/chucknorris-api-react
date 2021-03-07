@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 
-import Button from "../Button";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -26,30 +25,15 @@ const useStyles = makeStyles(() => ({
 
 // Styles -------------------------------------
 
-const API_URL = 'https://api.chucknorris.io/jokes/';
-
-function RandomCard() {
+function RandomCard( {randomFact, numresults} ) {
     const classes = useStyles();
 
-    const [randomFact, setrandomFact] = useState('');
-    
-    const sendRandomFact = () => {
-        fetch(`${API_URL}random`)
-        .then(res => res.json())
-        .then(data => setrandomFact(data.value))
-    }
+    const confirm = numresults === false ? 'none':"" 
 
-    useEffect(() => {
-        sendRandomFact();
-    }, []);
-    
     return (
-        <>
-        <Paper className={classes.myPaper} variant="outlined" >
+        <Paper className={classes.myPaper} variant="outlined" style={{ display: confirm }} >
             <Typography className={classes.myText} dangerouslySetInnerHTML={{__html: randomFact}}/>
         </Paper>
-        <Button type='button' myRandom={() => sendRandomFact()} />
-        </>
     );
 };
 

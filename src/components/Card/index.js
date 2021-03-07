@@ -7,29 +7,42 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles(() => ({
     myPaper: {
         width: '608px',
-        margin: '85px 0',
+        border: 'none',
+        backgroundColor: 'transparent',
+    },
+    myText: {
+        
         backgroundColor: '#FFF',
         borderRadius: '10px',
         boxShadow: '#bdbdbd 0px 4px 6px',
-    },
-    myText: {
-        padding: '48px 24px',
-        textAlign: 'center',
         
-        fontFamily: 'Mulish' ,
+        margin: '24px 0',
+        padding: '48px 24px',
+
+        textAlign: 'center',
+        fontFamily: 'Mulish',
         fontSize: '14px',
         fontWeight: '400',
         color: '#20232D',
+        border: '1px solid #989898',
     }
 }));
 
-function Card() {
+function Card( {info} ) {
     const classes = useStyles();
-    
+
     return (
-        <Paper className={classes.myPaper} variant="outlined" >
-            <Typography className={classes.myText}/>
-        </Paper>
+        <>
+        {info.result && (
+            <Paper className={classes.myPaper} variant="outlined" >
+                {info.result.map((newfact) => (
+                    <Typography key={newfact.id} className={classes.myText}
+                    dangerouslySetInnerHTML={{__html: newfact.value}}
+                    />
+                ))}
+            </Paper>
+        )}
+        </>
     );
 };
 
