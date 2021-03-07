@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MyButton() {
+export default function MyButton({myRandom}) {
   const classes = useStyles();
   return (
-    <Button variant="contained"disableElevation className={classes.btnAdv}>
+    <Button variant="contained" onClick={myRandom} disableElevation className={classes.btnAdv}>
         Get a new random fact!
     </Button>
   );

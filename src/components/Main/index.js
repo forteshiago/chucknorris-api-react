@@ -2,8 +2,8 @@ import React from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Header from "../Header";
+import RandomCard from "../RandomCard";
 import Card from "../Card"
-import Button from "../Button";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -26,8 +26,7 @@ function Main() {
     return (
         <main className={classes.root} >
             <Header className={classes.h1} >Chuck Norris Facts</Header>
-            <Card />
-            <Button />
+            <RandomCard />
         </main>
     );
 }
