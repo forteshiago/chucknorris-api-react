@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-
 import { makeStyles } from '@material-ui/core/styles';
+
 import Header from "../Header";
 import TextInput from "../TextInput";
+import SelectInput from "../SelectInput";
 import RandomCard from "../RandomCard";
 import Card from "../Card";
 import Button from "../Button";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: '#fafafa',
 
@@ -18,16 +19,34 @@ const useStyles = makeStyles(() => ({
         alignItems: 'center',
     },
     h1: {
-        marginBottom: '1rem',
+        margin: '1rem 0',
+        [theme.breakpoints.down('xs')]: {
+            maxWidth: '328px',
+        },
     },
+
     h3: {
         margin: '32.7px 0',
         color: '#20232D',
         fontFamily: 'Mulish, sans-serif',
         fontSize: '12px',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '18px',
+        },
+        
     },
-    searchresult: {
-    }
+    areasearch: {
+        width: '608px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginTop:'1.5rem',
+        [theme.breakpoints.down('xs')]: {
+            maxWidth: '328px',
+            height: '120px',
+            flexDirection: 'column',
+            alignItems: 'center',
+        },
+    },
 }));
 
 // Styles -------------------------------------
@@ -36,23 +55,23 @@ const API_URL_BASE = 'https://api.chucknorris.io/jokes/';
 
 function Main() {
     const classes = useStyles();
-
     const [info, setInfo] = useState({});
     const [text, setText] = useState("");
-    const [randomFact, setrandomFact] = useState('');
+    const [randomFact, setrandomFact] = useState("");
+    
 
     useEffect(() => {
       setInfo({});
-
+      
       if (text) {
           fetch(`${API_URL_BASE}search?query=${text}`)
           .then((response) => response.json())
           .then((response) => {
-            setInfo(response);
+              setInfo(response);
           });
-      } else {
-        sendRandomFact();
-      }
+        } else {
+            sendRandomFact();
+        }
     }, [text]);
 
     let sendRandomFact = () => {
@@ -69,16 +88,19 @@ function Main() {
         <main className={classes.root}>
             
                 <Header className={classes.h1} >Chuck Norris Facts</Header>
-                <TextInput value={text} onChange={(mysearch) => setText(mysearch)} />
+                <div className={classes.areasearch}>
+                    <div>
+                    <TextInput value={text} onChange={(mysearch) => setText(mysearch)} />
+                    
+                    </div><SelectInput />
+                </div>
                     { numresults === false && 
                         <h3 className={classes.h3} > Showing {info.total} results </h3>
                     }
-                <RandomCard id="myRandomFact" randomFact={randomFact} numresults={numresults}/>
+                <RandomCard id="myRandomFact" randomFact={randomFact} numresults={numresults} />
 
                 <Button type='button' myRandom={() => sendRandomFact()}/>
-                <Card className={classes.searchresult} info={info} />
-           
-         
+                <Card info={info} />           
          
         </main>
     );

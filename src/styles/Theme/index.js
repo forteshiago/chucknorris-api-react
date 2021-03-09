@@ -1,13 +1,14 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { ptBR } from '@material-ui/core/locale';
 
-export default createMuiTheme(
-  {
+const theme = createMuiTheme({
     palette: {
       secondary: {
         main: '#48CCCC',
       },
     },
-  },
-  ptBR
-);
+  });
+
+theme.overrides = {
+}
+
+export default theme;

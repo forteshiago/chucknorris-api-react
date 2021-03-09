@@ -4,11 +4,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     myPaper: {
         width: '608px',
         border: 'none',
         backgroundColor: 'transparent',
+        [theme.breakpoints.down('xs')]: {
+            width: '328px',
+        },
     },
     myText: {
         
@@ -24,7 +27,6 @@ const useStyles = makeStyles(() => ({
         fontSize: '14px',
         fontWeight: '400',
         color: '#20232D',
-        border: '1px solid #989898',
     }
 }));
 

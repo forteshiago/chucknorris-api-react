@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     borderStyle: 'none',
     fontSize: '16px',
     fontWeight: '700',
+    [theme.breakpoints.down('xs')]: {
+      width: '328px',
+      fontSize: '20px'
+  },
   }
 }));
 
