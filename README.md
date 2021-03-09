@@ -8,4 +8,4 @@ _Projeto com a finalidade de realizar comunicações com uma api e retornar seus
  - [x] Pesquisa livre
  - [ ] Pesquisa por categoria
 
-Tecnologias: React, Javascritp, Material-ui
+Tecnologias: React, Javascript, Material-ui
